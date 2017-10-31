@@ -7,6 +7,6 @@
 
 body {
   margin: 0;
-  background: url("../img/bird.jpg");
+  background: #ccc;
   font-family: 'myFont';
 }
