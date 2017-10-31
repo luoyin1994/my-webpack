@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'myFont';
+  src: url('../font/my-font.ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  /*background: url("../img/bird.jpg");*/
+  font-family: 'myFont';
+}
