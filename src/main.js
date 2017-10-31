@@ -5,6 +5,7 @@ import _ from 'lodash';
 import utils from './js/utils/utils';
 
 import './css/main.css';
+import './img/bird.jpg';
 
 // json默认被转化为对象
 import testJson from '../mock/test.json';

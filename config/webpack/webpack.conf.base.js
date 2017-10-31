@@ -21,15 +21,18 @@ var config = {
                     fallback: 'style-loader',
                     use     : 'css-loader',
                 }),
-                // use: [
-                //     'style-loader',
-                //     'css-loader'
-                // ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use : [
                     'file-loader',
+                    // 压缩图片
+                    {
+                        loader : 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true,
+                        },
+                    },
                 ],
             },
             {
