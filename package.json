@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "webpack --config ./config/webpack/webpack.conf.dev.js",
     "dist": "webpack --config ./config/webpack/webpack.conf.prod.js",
-    "start": "webpack-dev-server --config ./config/webpack/webpack.conf.dev.js --open",
+    "start": "webpack-dev-server --config ./config/webpack/webpack.conf.dev.js --open"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",

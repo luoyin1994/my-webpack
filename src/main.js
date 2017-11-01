@@ -30,4 +30,4 @@ function createButton() {
 let button = createButton();
 DOM.body.appendChild(button);
 
-// import './js/vendor/b.js';
+import './js/vendor/a.js';

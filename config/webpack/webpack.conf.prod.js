@@ -4,8 +4,6 @@ var webpackConfig     = require('./webpack.config');
 var webpackBaseConfig = require('./webpack.conf.base');
 
 /** 插件引用 **/
-    // 提取css
-var ExtractTextPlugin    = require('extract-text-webpack-plugin');
 // 清理打包文件夹
 var CleanWebpackPlugin   = require('clean-webpack-plugin');
 // 代码压缩
@@ -27,7 +25,6 @@ var config = {
         // new CleanWebpackPlugin(webpackConfig.prod, {
         //     root: webpackConfig.bundlesDirPath,
         // }),
-        new ExtractTextPlugin('css/[name]-[chunkhash:5].css'),
         /** 代码压缩 **/
         // 不在dev中压缩代码，压缩代码需要花费的时间将占打包时间的绝大部分。自我测试在60%以上
         // 删除未引用代码,
