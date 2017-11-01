@@ -8,6 +8,8 @@ var webpackBaseConfig = require('./webpack.conf.base');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 // 代码压缩
 var UglifyJSPlugin     = require('uglifyjs-webpack-plugin');
+// 图形化打包分析
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // 合并webpack配置
 var merge = require('webpack-merge');
@@ -16,8 +18,8 @@ var config = {
     // 定义出口
     output : {
         path         : webpackConfig.prodDirPath,
-        filename     : '[name]-[hash].js',
-        chunkFilename: '[name]-[id]-[hash].js',
+        filename     : '[name]-[hash:5].js',
+        chunkFilename: '[name]-[id]-[hash:5].js',
     },
     plugins: [
         new CleanWebpackPlugin(webpackConfig.prod, {
@@ -36,6 +38,8 @@ var config = {
                 'NODE_ENV': JSON.stringify(webpackConfig.prod),
             },
         }),
+        // 图形化打包分析
+        new BundleAnalyzerPlugin(),
     ],
 };
 

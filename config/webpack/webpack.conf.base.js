@@ -15,14 +15,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 /** 导出的webpack配置 **/
 var config = {
     // 上下文环境，例如为entry中提供相对的路径
-    context: path.resolve(webpackConfig.rootDirPath, 'src/entries'),
+    context: path.resolve(webpackConfig.rootDirPath, 'src'),
     // 定义入口
     entry  : {
         main   : './main.js',
         subMain: './subMain.js',
-        vendors: [
-            'lodash',
-        ],
     },
     // loaders
     module : {
@@ -61,14 +58,10 @@ var config = {
     },
     // 插件
     plugins: [
-        new ExtractTextPlugin('css/[name]-[hash].css'),
+        new ExtractTextPlugin('css/[name]-[hash:5].css'),
         new HtmlWebpackPlugin({
             title: 'Code Splitting',
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendors',
-        }),
-
     ],
 };
 
