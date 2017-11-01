@@ -7,8 +7,6 @@ var webpackConfig = require('./webpack.config');
 var webpack = require('webpack');
 
 /** 插件引用 **/
-    // 提取css
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // 自动生成html
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -20,6 +18,7 @@ var config = {
     entry  : {
         main   : './main.js',
         subMain: './subMain.js',
+        lodash : 'lodash',
     },
     // loaders
     module : {
@@ -58,9 +57,19 @@ var config = {
     },
     // 插件
     plugins: [
-        new ExtractTextPlugin('css/[name]-[hash:5].css'),
         new HtmlWebpackPlugin({
-            title: 'Code Splitting',
+            title: 'Caching',
+        }),
+        // 模块标识符
+        // new webpack.NamedModulesPlugin(),
+        // new webpack.HashedModuleIdsPlugin(),
+        // 提取lodash
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'lodash',
+        }),
+        //  提取webpack 的样板(boilerplate)和 manifest
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'runtime',
         }),
     ],
 };

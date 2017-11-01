@@ -4,10 +4,12 @@ var webpackConfig     = require('./webpack.config');
 var webpackBaseConfig = require('./webpack.conf.base');
 
 /** 插件引用 **/
-    // 清理打包文件夹
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+    // 提取css
+var ExtractTextPlugin    = require('extract-text-webpack-plugin');
+// 清理打包文件夹
+var CleanWebpackPlugin   = require('clean-webpack-plugin');
 // 代码压缩
-var UglifyJSPlugin     = require('uglifyjs-webpack-plugin');
+var UglifyJSPlugin       = require('uglifyjs-webpack-plugin');
 // 图形化打包分析
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -18,13 +20,14 @@ var config = {
     // 定义出口
     output : {
         path         : webpackConfig.prodDirPath,
-        filename     : '[name]-[hash:5].js',
-        chunkFilename: '[name]-[id]-[hash:5].js',
+        filename     : '[name]-[chunkhash:5].js',
+        chunkFilename: '[name]-[id]-[chunkhash:5].js',
     },
     plugins: [
-        new CleanWebpackPlugin(webpackConfig.prod, {
-            root: webpackConfig.bundlesDirPath,
-        }),
+        // new CleanWebpackPlugin(webpackConfig.prod, {
+        //     root: webpackConfig.bundlesDirPath,
+        // }),
+        new ExtractTextPlugin('css/[name]-[chunkhash:5].css'),
         /** 代码压缩 **/
         // 不在dev中压缩代码，压缩代码需要花费的时间将占打包时间的绝大部分。自我测试在60%以上
         // 删除未引用代码,
@@ -39,7 +42,7 @@ var config = {
             },
         }),
         // 图形化打包分析
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
     ],
 };
 

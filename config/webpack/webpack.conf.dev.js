@@ -18,9 +18,9 @@ var config = {
         chunkFilename: '[name].js',
     },
     plugins: [
-        new CleanWebpackPlugin(webpackConfig.dev, {
-            root: webpackConfig.bundlesDirPath,
-        }),
+        // new CleanWebpackPlugin(webpackConfig.dev, {
+        //     root: webpackConfig.bundlesDirPath,
+        // }),
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify(webpackConfig.dev),

@@ -9,7 +9,6 @@
     "dev": "webpack --config ./config/webpack/webpack.conf.dev.js",
     "dist": "webpack --config ./config/webpack/webpack.conf.prod.js",
     "start": "webpack-dev-server --config ./config/webpack/webpack.conf.dev.js --open",
-    "server": "node ./config/webpack/server.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",
