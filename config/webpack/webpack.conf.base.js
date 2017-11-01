@@ -4,6 +4,8 @@ var path = require('path');
 // webpack需要的相关配置
 var webpackConfig = require('./webpack.config');
 
+var webpack = require('webpack');
+
 /** 插件引用 **/
     // 提取css
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -18,6 +20,9 @@ var config = {
     entry  : {
         main   : './main.js',
         subMain: './subMain.js',
+        vendors: [
+            'lodash',
+        ],
     },
     // loaders
     module : {
@@ -58,8 +63,12 @@ var config = {
     plugins: [
         new ExtractTextPlugin('css/[name]-[hash].css'),
         new HtmlWebpackPlugin({
-            title: 'Output Management',
+            title: 'Code Splitting',
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendors',
+        }),
+
     ],
 };
 

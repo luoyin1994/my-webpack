@@ -1,4 +1,6 @@
 import '../css/main.css';
+import '../js/vendor/a.js';
+import '../js/vendor/b.js';
 
 // json默认被转化为对象
 import testJson from '../../mock/test.json';
