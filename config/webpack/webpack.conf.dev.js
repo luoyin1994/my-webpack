@@ -10,7 +10,6 @@ var merge = require('webpack-merge');
 var config = {
     output    : {
         path: webpackConfig.devDirPath,
-        publicPath: '/',
     },
     plugins   : [
         new CleanWebpackPlugin(webpackConfig.dev, {
