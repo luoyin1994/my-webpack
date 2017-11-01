@@ -8,18 +8,20 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var merge = require('webpack-merge');
 
 var config = {
-    output   : {
+    output    : {
         path: webpackConfig.devDirPath,
+        publicPath: '/',
     },
-    plugins  : [
+    plugins   : [
         new CleanWebpackPlugin(webpackConfig.dev, {
             root: webpackConfig.bundlesDirPath,
         }),
     ],
-    devtool  : 'inline-source-map',
-    devServer: {
+    devtool   : 'inline-source-map',
+    devServer : {
         contentBase: webpackConfig.devDirPath,
     },
+
 };
 
 module.exports = merge(webpackBaseConfig, config);
