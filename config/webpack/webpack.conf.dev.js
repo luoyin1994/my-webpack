@@ -8,16 +8,19 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var merge = require('webpack-merge');
 
 var config = {
-    output    : {
+    output   : {
         path: webpackConfig.devDirPath,
     },
-    plugins   : [
+    plugins  : [
         new CleanWebpackPlugin(webpackConfig.dev, {
             root: webpackConfig.bundlesDirPath,
         }),
     ],
-    devtool   : 'inline-source-map',
-    devServer : {
+    // 提供代码sourceMap追溯，方便调试
+    devtool  : 'inline-source-map',
+    // webpack-dev-server，提供热替换
+    // 开箱即可对js/js(import)、css/css(@import)等文件进行监控
+    devServer: {
         contentBase: webpackConfig.devDirPath,
     },
 

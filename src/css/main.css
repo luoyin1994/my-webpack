@@ -5,8 +5,12 @@
   font-style: normal;
 }
 
+@import "./other.css";
+
 body {
   margin: 0;
-  background: #ccc;
+  background: #cccccc;
+  font-size: 16px;
+  color: #5ca7e6;
   font-family: 'myFont';
 }
