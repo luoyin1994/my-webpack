@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 var webpackConfig     = require('./webpack.config');
 var webpackBaseConfig = require('./webpack.conf.base');
 
@@ -11,8 +13,11 @@ var UglifyJSPlugin     = require('uglifyjs-webpack-plugin');
 var merge = require('webpack-merge');
 
 var config = {
+    // 定义出口
     output : {
-        path: webpackConfig.prodDirPath,
+        path         : webpackConfig.prodDirPath,
+        filename     : '[name]-[hash].js',
+        chunkFilename: '[name]-[id]-[hash].js',
     },
     plugins: [
         new CleanWebpackPlugin(webpackConfig.prod, {
@@ -25,6 +30,11 @@ var config = {
         new UglifyJSPlugin({
             // 开启可以实现打包后代码出错定位，实现dev中配置devtool后的效果
             sourceMap: true,
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify(webpackConfig.prod),
+            },
         }),
     ],
 };

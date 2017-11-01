@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 var webpackConfig     = require('./webpack.config');
 var webpackBaseConfig = require('./webpack.conf.base');
 
@@ -9,12 +11,20 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var merge = require('webpack-merge');
 
 var config = {
+    // 定义出口
     output : {
-        path: webpackConfig.devDirPath,
+        path         : webpackConfig.devDirPath,
+        filename     : '[name].js',
+        chunkFilename: '[name].js',
     },
     plugins: [
         new CleanWebpackPlugin(webpackConfig.dev, {
             root: webpackConfig.bundlesDirPath,
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify(webpackConfig.dev),
+            },
         }),
     ],
 
@@ -26,7 +36,6 @@ var config = {
     devServer: {
         contentBase: webpackConfig.devDirPath,
     },
-
 };
 
 module.exports = merge(webpackBaseConfig, config);

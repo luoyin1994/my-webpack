@@ -19,11 +19,6 @@ var config = {
         main   : './main.js',
         subMain: './subMain.js',
     },
-    // 定义出口
-    output : {
-        filename     : '[name]-[hash].js',
-        chunkFilename: '[name]-[id].js',
-    },
     // loaders
     module : {
         rules: [
@@ -61,7 +56,7 @@ var config = {
     },
     // 插件
     plugins: [
-        new ExtractTextPlugin('css/[name].css'),
+        new ExtractTextPlugin('css/[name]-[hash].css'),
         new HtmlWebpackPlugin({
             title: 'Output Management',
         }),
