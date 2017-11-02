@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-@import "./other.css";
+@import "other.css";
 
 body {
   margin: 0;

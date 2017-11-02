@@ -29,18 +29,4 @@ function createButton() {
 
 let button = createButton();
 DOM.body.appendChild(button);
-let a = utils.storage.getItem('a.js');
-console.log(a, 'from localStorage');
-if (a) {
-} else {
-    a = require('./js/vendor/a.js');
-    console.log(a, 'from ./js/vendor/a.js');
-    utils.storage.setItem('a.js', a);
-}
 
-console.log(a, 'outer');
-console.log(a.a, 'a.a');
-console.log(a.b, 'a.b');
-console.log(a.c, 'a.c');
-console.log(a.d, 'a.d');
-console.log(a.e, 'a.e');

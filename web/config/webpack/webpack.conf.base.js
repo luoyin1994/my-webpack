@@ -14,7 +14,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 /** 导出的webpack配置 **/
 var config            = {
     // 上下文环境，例如为entry中提供相对的路径
-    context: path.resolve(webpackConfig.rootDirPath, 'src'),
+    context: path.resolve(webpackConfig.rootDirPath, 'web/src'),
     // 定义入口
     entry  : {
         main   : './main.js',
