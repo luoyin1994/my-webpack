@@ -1,3 +1,3 @@
-console.log('I am B!');
-let bbb = 'i am bbb';
-export default bbb;
+console.log('loading b.js!');
+let b = 'i am B!';
+export default b;

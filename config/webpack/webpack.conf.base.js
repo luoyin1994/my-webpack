@@ -18,7 +18,7 @@ var config            = {
     // 定义入口
     entry  : {
         main   : './main.js',
-        subMain: './subMain.js',
+        // subMain: './subMain.js',
         a      : './js/vendor/a.js',
         lodash : 'lodash',
     },
