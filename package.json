@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "webpack --config ./web/config/webpack/webpack.conf.dev.js",
     "dist": "webpack --config ./web/config/webpack/webpack.conf.prod.js",
-    "start": "webpack-dev-server --config ./web/config/webpack/webpack.conf.dev.js --open"
+    "start": "webpack-dev-server --config ./web/config/webpack/webpack.conf.dev.js --open",
+    "app": "node ./node/app.js",
+    "app-watch": "supervisor ./node/app.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.17",
