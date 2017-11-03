@@ -1,3 +1,7 @@
+:root {
+  --blue: #5ca7e6;
+}
+
 @font-face {
   font-family: 'myFont';
   src: url('../font/my-font.ttf');
@@ -11,6 +15,10 @@ body {
   margin: 0;
   background: #cccccc;
   font-size: 16px;
-  color: #5ca7e6;
+  color: var(--blue);
   font-family: 'myFont';
+}
+
+p {
+  transform: translateY(100%);
 }

@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 
-var config            = require('../config');
+var config            = require('./config');
 var webpackBaseConfig = require('./webpack.conf.base');
 
 /** 插件引用 **/

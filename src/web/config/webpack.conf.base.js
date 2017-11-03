@@ -2,7 +2,7 @@
 var path = require('path');
 
 // webpack需要的相关配置
-var config = require('../config');
+var config = require('./config');
 
 var webpack = require('webpack');
 
@@ -29,7 +29,10 @@ module.exports = {
                 test: /\.css$/,
                 use : ExtractTextPlugin.extract({
                     fallback  : 'style-loader',
-                    use       : 'css-loader',
+                    use       : [
+                        {loader: 'css-loader'},
+                        {loader: 'postcss-loader'},
+                    ],
                     // 对于提取出的css中的引用增加的路径前缀
                     publicPath: '../',
                 }),
@@ -45,7 +48,6 @@ module.exports = {
                             name: '[path][name].[ext]?[hash:5]',
                         },
                     },
-
                     // 压缩图片
                     {
                         loader : 'image-webpack-loader',
@@ -74,7 +76,7 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('css/[name].css?[chunkhash:5]'),
         new HtmlWebpackPlugin({
-            title   : 'Caching',
+            title   : 'postcss',
             filename: 'index.html?[hash:5]',
         }),
         // 模块标识符
@@ -88,7 +90,7 @@ module.exports = {
         }),
         //  提取webpack 的样板(boilerplate)和 manifest
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'runtime',
+            name     : 'runtime',
             filename : 'js/[name].js?[hash:5]',
             minChunks: Infinity,
         }),
