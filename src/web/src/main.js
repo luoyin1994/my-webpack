@@ -17,13 +17,13 @@ function createButton() {
     //     }, 'b');
     // };
 
-    button.onclick   = e => {
+    button.onclick          = e => {
         import(/* webpackChunkName: "b" */ './js/vendor/b.js').then(
             module => {
                 console.log(module.default);
             });
     };
-    button.innerHTML = '点击加载 b.js';
+    button.innerHTML        = '点击加载 b.js';
     return button;
 }
 
@@ -33,9 +33,17 @@ function createImg(options) {
     return img;
 }
 
+function createP(innerHTML) {
+    let p       = document.createElement('p');
+    p.innerHTML = innerHTML;
+    return p;
+}
+
 let img = createImg({src: require('./img/bird.jpg')});
 DOM.body.appendChild(img);
 
 let button = createButton();
 DOM.body.appendChild(button);
 
+let p = createP('I am P!');
+DOM.body.appendChild(p);

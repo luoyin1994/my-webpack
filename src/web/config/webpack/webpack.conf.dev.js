@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 
-var webpackConfig     = require('./webpack.config');
+var config            = require('../config');
 var webpackBaseConfig = require('./webpack.conf.base');
 
 /** 插件引用 **/
@@ -10,12 +10,15 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 // 合并webpack配置
 var merge = require('webpack-merge');
 
-var config = {
+module.exports = merge(webpackBaseConfig, {
     // 定义出口
     output : {
-        path         : webpackConfig.devDirPath,
+        path         : config.devDirPath,
         filename     : '[name].js',
         chunkFilename: '[name].js',
+
+        // 指定index.html中的外部资源引用目录前缀
+        publicPath: './',
     },
     plugins: [
         // new CleanWebpackPlugin(webpackConfig.dev, {
@@ -23,7 +26,7 @@ var config = {
         // }),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify(webpackConfig.dev),
+                'NODE_ENV': JSON.stringify(config.dev),
             },
         }),
     ],
@@ -36,6 +39,4 @@ var config = {
     // devServer: {
     //     contentBase: webpackConfig.devDirPath,
     // },
-};
-
-module.exports = merge(webpackBaseConfig, config);
+});

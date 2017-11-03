@@ -2,7 +2,7 @@
 var path = require('path');
 
 // webpack需要的相关配置
-var webpackConfig = require('./webpack.config');
+var config = require('../config');
 
 var webpack = require('webpack');
 
@@ -12,9 +12,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // 提取css
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 /** 导出的webpack配置 **/
-var config            = {
+module.exports = {
     // 上下文环境，例如为entry中提供相对的路径
-    context: path.resolve(webpackConfig.rootDirPath, 'web/src'),
+    context: path.resolve(config.webDirPath, 'src'),
     // 定义入口
     entry  : {
         main  : './main.js',
@@ -29,8 +29,10 @@ var config            = {
             {
                 test: /\.css$/,
                 use : ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use     : 'css-loader',
+                    fallback  : 'style-loader',
+                    use       : 'css-loader',
+                    // 对于提取出的css中的引用增加的路径前缀
+                    publicPath: '../',
                 }),
             },
             // 处理图片
@@ -41,7 +43,7 @@ var config            = {
                         loader : 'file-loader',
                         options: {
                             // 打出引用时的目录结构
-                            name: '[path][name]-[hash:5].[ext]',
+                            name: '[path][name].[ext]?[hash:5]',
                         },
                     },
 
@@ -62,7 +64,7 @@ var config            = {
                         loader : 'file-loader',
                         options: {
                             // 打出引用时的目录结构
-                            name: '[path][name]-[hash:5].[ext]',
+                            name: '[path][name].[ext]?[hash:5]',
                         },
                     },
                 ],
@@ -71,9 +73,10 @@ var config            = {
     },
     // 插件
     plugins: [
-        new ExtractTextPlugin('css/[name]-[chunkhash:5].css'),
+        new ExtractTextPlugin('css/[name].css?[chunkhash:5]'),
         new HtmlWebpackPlugin({
-            title: 'Caching',
+            title   : 'Caching',
+            filename: 'index.html?[hash:5]',
         }),
         // 模块标识符
         // new webpack.NamedModulesPlugin(),
@@ -81,7 +84,7 @@ var config            = {
         // 提取其他模块
         new webpack.optimize.CommonsChunkPlugin({
             name     : ['a', 'lodash'],
-            filename : '[name].js',
+            filename : '[name].js?[hash:5]',
             minChunks: Infinity,
         }),
         //  提取webpack 的样板(boilerplate)和 manifest
@@ -90,5 +93,3 @@ var config            = {
         }),
     ],
 };
-
-module.exports = config;

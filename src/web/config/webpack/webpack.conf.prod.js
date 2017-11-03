@@ -1,25 +1,26 @@
 var webpack = require('webpack');
 
-var webpackConfig     = require('./webpack.config');
+var config            = require('../config');
 var webpackBaseConfig = require('./webpack.conf.base');
 
 /** 插件引用 **/
-// 清理打包文件夹
+    // 清理打包文件夹
 var CleanWebpackPlugin   = require('clean-webpack-plugin');
 // 代码压缩
 var UglifyJSPlugin       = require('uglifyjs-webpack-plugin');
 // 图形化打包分析
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var BundleAnalyzerPlugin = require(
+    'webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // 合并webpack配置
 var merge = require('webpack-merge');
 
-var config = {
+module.exports = merge(webpackBaseConfig, {
     // 定义出口
     output : {
-        path         : webpackConfig.prodDirPath,
-        filename     : '[name]-[chunkhash:5].js',
-        chunkFilename: '[name]-[chunkhash:5].js',
+        path         : config.prodDirPath,
+        filename     : '[name].js?[chunkhash:5]',
+        chunkFilename: '[name].js?[chunkhash:5]',
     },
     plugins: [
         // new CleanWebpackPlugin(webpackConfig.prod, {
@@ -35,12 +36,10 @@ var config = {
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify(webpackConfig.prod),
+                'NODE_ENV': JSON.stringify(config.prod),
             },
         }),
         // 图形化打包分析
         // new BundleAnalyzerPlugin(),
     ],
-};
-
-module.exports = merge(webpackBaseConfig, config);
+});
