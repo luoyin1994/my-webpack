@@ -30,12 +30,12 @@ var config = {
 
     // 提供代码sourceMap追溯，方便调试
     // source-map比inline-source-map打包更小，打包时间更快
-    devtool  : 'source-map',
+    // devtool  : 'source-map',
     // webpack-dev-server，提供热替换
     // 开箱即可对js/js(import)、css/css(@import)等文件进行监控
-    devServer: {
-        contentBase: webpackConfig.devDirPath,
-    },
+    // devServer: {
+    //     contentBase: webpackConfig.devDirPath,
+    // },
 };
 
 module.exports = merge(webpackBaseConfig, config);

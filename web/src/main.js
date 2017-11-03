@@ -27,6 +27,15 @@ function createButton() {
     return button;
 }
 
+function createImg(options) {
+    let img = document.createElement('img');
+    Object.assign(img, options);
+    return img;
+}
+
+let img = createImg({src: require('./img/bird.jpg')});
+DOM.body.appendChild(img);
+
 let button = createButton();
 DOM.body.appendChild(button);
 

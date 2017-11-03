@@ -17,10 +17,10 @@ var config            = {
     context: path.resolve(webpackConfig.rootDirPath, 'web/src'),
     // 定义入口
     entry  : {
-        main   : './main.js',
+        main  : './main.js',
         // subMain: './subMain.js',
-        a      : './js/vendor/a.js',
-        lodash : 'lodash',
+        a     : './js/vendor/a.js',
+        lodash: 'lodash',
     },
     // loaders
     module : {
@@ -37,7 +37,14 @@ var config            = {
             {
                 test: /\.(png|svg|jpg|gif)$/,
                 use : [
-                    'file-loader',
+                    {
+                        loader : 'file-loader',
+                        options: {
+                            // 打出引用时的目录结构
+                            name: '[path][name]-[hash:5].[ext]',
+                        },
+                    },
+
                     // 压缩图片
                     {
                         loader : 'image-webpack-loader',
@@ -51,10 +58,15 @@ var config            = {
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
                 use : [
-                    'file-loader',
+                    {
+                        loader : 'file-loader',
+                        options: {
+                            // 打出引用时的目录结构
+                            name: '[path][name]-[hash:5].[ext]',
+                        },
+                    },
                 ],
             },
-
         ],
     },
     // 插件
@@ -68,9 +80,9 @@ var config            = {
         // new webpack.HashedModuleIdsPlugin(),
         // 提取其他模块
         new webpack.optimize.CommonsChunkPlugin({
-            name    : ['a','lodash'],
-            filename: '[name].js',
-            minChunks: Infinity
+            name     : ['a', 'lodash'],
+            filename : '[name].js',
+            minChunks: Infinity,
         }),
         //  提取webpack 的样板(boilerplate)和 manifest
         new webpack.optimize.CommonsChunkPlugin({

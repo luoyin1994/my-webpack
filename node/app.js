@@ -1,13 +1,16 @@
-const Koa      = require('koa');
-const app      = new Koa();
-const loadHTML = require('./middleware/loadHTML');
-const setPubDir = require('./middleware/setPubDir');
+const PORT = 3000;
+
+const path = require('path');
+
+const Koa   = require('koa');
+const app   = new Koa();
+const serve = require('koa-static');
+
+app.use(serve(path.resolve(__dirname, 'dev')));
+
 app.use(async (ctx, next) => {
-    ctx.body = loadHTML('./dev/index.html');
-    await next();
-});
-app.use(async (ctx, next) => {
-    ctx.body = setPubDir('./dev');
+    ctx.body = 'hello world!';
 });
 
-app.listen(3000);
+app.listen(PORT);
+console.log(`listening on port ${PORT}`);

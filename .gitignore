@@ -2,3 +2,5 @@
 node_modules
 bundles
 *.log
+node/dev
+node/dist

@@ -19,7 +19,7 @@ var config = {
     output : {
         path         : webpackConfig.prodDirPath,
         filename     : '[name]-[chunkhash:5].js',
-        chunkFilename: '[name]-[id]-[chunkhash:5].js',
+        chunkFilename: '[name]-[chunkhash:5].js',
     },
     plugins: [
         // new CleanWebpackPlugin(webpackConfig.prod, {
