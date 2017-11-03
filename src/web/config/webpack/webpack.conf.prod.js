@@ -7,7 +7,7 @@ var webpackBaseConfig = require('./webpack.conf.base');
     // 清理打包文件夹
 var CleanWebpackPlugin   = require('clean-webpack-plugin');
 // 代码压缩
-var UglifyJSPlugin       = require('uglifyjs-webpack-plugin');
+var UglifyJSPlugin       = webpack.optimize.UglifyJSPlugin;
 // 图形化打包分析
 var BundleAnalyzerPlugin = require(
     'webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -20,7 +20,7 @@ module.exports = merge(webpackBaseConfig, {
     output : {
         path         : config.prodDirPath,
         filename     : '[name].js?[chunkhash:5]',
-        chunkFilename: '[name].js?[chunkhash:5]',
+        chunkFilename: 'js/[name].js?[chunkhash:5]',
     },
     plugins: [
         // new CleanWebpackPlugin(webpackConfig.prod, {

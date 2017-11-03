@@ -15,7 +15,7 @@ module.exports = merge(webpackBaseConfig, {
     output : {
         path         : config.devDirPath,
         filename     : '[name].js',
-        chunkFilename: '[name].js',
+        chunkFilename: 'js/[name].js',
 
         // 指定index.html中的外部资源引用目录前缀
         publicPath: './',

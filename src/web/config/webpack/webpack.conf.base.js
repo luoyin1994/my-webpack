@@ -19,7 +19,6 @@ module.exports = {
     entry  : {
         main  : './main.js',
         // subMain: './subMain.js',
-        a     : './js/vendor/a.js',
         lodash: 'lodash',
     },
     // loaders
@@ -83,13 +82,15 @@ module.exports = {
         // new webpack.HashedModuleIdsPlugin(),
         // 提取其他模块
         new webpack.optimize.CommonsChunkPlugin({
-            name     : ['a', 'lodash'],
-            filename : '[name].js?[hash:5]',
+            name     : ['lodash'],
+            filename : 'js/vendor/[name].js?[hash:5]',
             minChunks: Infinity,
         }),
         //  提取webpack 的样板(boilerplate)和 manifest
         new webpack.optimize.CommonsChunkPlugin({
             name: 'runtime',
+            filename : 'js/[name].js?[hash:5]',
+            minChunks: Infinity,
         }),
     ],
 };
