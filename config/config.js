@@ -19,4 +19,18 @@ module.exports = {
     devDirPath,
     prod,
     dev,
+
+    dirpath: {
+        root   : rootDirPath,
+        web    : webDirPath,
+        node   : nodeDirPath,
+        bundles: bundlesDirPath,
+        prod   : prodDirPath,
+        dev    : devDirPath,
+    },
+
+    env: {
+        prod: prod,
+        dev : dev,
+    },
 };
