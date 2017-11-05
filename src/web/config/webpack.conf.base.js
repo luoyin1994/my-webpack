@@ -94,20 +94,20 @@ module.exports = {
             filename : 'js/[name].js?[hash:5]',
             minChunks: Infinity,
         }),
-        new webpack.DllReferencePlugin({
-            context : __dirname,
-            manifest: require('../test/vendor-manifest.json'),
-            // name: "./vendor.js",
-            scope: "xyz",
-            sourceType: "commonjs2"
-        }),
+        // new webpack.DllReferencePlugin({
+        //     context : __dirname,
+        //     manifest: require('../test/vendor-manifest.json'),
+        //     name: "./vendor.js",
+            // scope: "xyz",
+            // sourceType: "commonjs2"
+        // }),
         new HtmlWebpackPlugin({
             title   : 'postcss',
             filename: 'index.html?[hash:5]',
         }),
-        new AddAssetHtmlPlugin({
-            filepath        : require.resolve('../test/vendor.js'),
-            includeSourcemap: false,
-        }),
+        // new AddAssetHtmlPlugin({
+        //     filepath        : require.resolve('../test/vendor.js'),
+        //     includeSourcemap: false,
+        // }),
     ],
 };
