@@ -8,11 +8,14 @@
   "scripts": {
     "dev": "webpack --config ./src/web/config/webpack.conf.dev.js",
     "dist": "webpack --config ./src/web/config/webpack.conf.prod.js",
+    "dll": "webpack --config ./src/web/config/webpack.vendor.conf.js",
+    "dllapp": "webpack --config ./src/web/config/webpack.app.config.js",
     "start": "webpack-dev-server --config ./src/web/config/webpack.conf.dev.js --open",
     "app": "node ./src/node/app.js",
     "app-watch": "supervisor ./src/node/app.js"
   },
   "devDependencies": {
+    "add-asset-html-webpack-plugin": "^2.1.2",
     "caniuse-lite": "^1.0.30000758",
     "clean-webpack-plugin": "^0.1.17",
     "css-loader": "^0.28.7",
@@ -24,6 +27,7 @@
     "koa-static": "^4.0.1",
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.8",
+    "shelljs": "^0.7.8",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.0",

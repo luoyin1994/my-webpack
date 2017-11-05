@@ -11,15 +11,16 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 // 提取css
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+var AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 /** 导出的webpack配置 **/
 module.exports = {
     // 上下文环境，例如为entry中提供相对的路径
     context: path.resolve(config.webDirPath, 'src'),
     // 定义入口
     entry  : {
-        main  : './main.js',
+        main   : './main.js',
         // subMain: './subMain.js',
-        lodash: 'lodash',
     },
     // loaders
     module : {
@@ -74,25 +75,39 @@ module.exports = {
     },
     // 插件
     plugins: [
+
         new ExtractTextPlugin('css/[name].css?[chunkhash:5]'),
-        new HtmlWebpackPlugin({
-            title   : 'postcss',
-            filename: 'index.html?[hash:5]',
-        }),
         // 模块标识符
         // new webpack.NamedModulesPlugin(),
         // new webpack.HashedModuleIdsPlugin(),
         // 提取其他模块
-        new webpack.optimize.CommonsChunkPlugin({
-            name     : ['lodash'],
-            filename : 'js/vendor/[name].js?[hash:5]',
-            minChunks: Infinity,
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name     : ['lodash'],
+        //     filename : 'js/vendor/[name].js?[hash:5]',
+        //     minChunks: Infinity,
+        // }),
+
         //  提取webpack 的样板(boilerplate)和 manifest
+        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name     : 'runtime',
             filename : 'js/[name].js?[hash:5]',
             minChunks: Infinity,
+        }),
+        new webpack.DllReferencePlugin({
+            context : __dirname,
+            manifest: require('../test/vendor-manifest.json'),
+            // name: "./vendor.js",
+            scope: "xyz",
+            sourceType: "commonjs2"
+        }),
+        new HtmlWebpackPlugin({
+            title   : 'postcss',
+            filename: 'index.html?[hash:5]',
+        }),
+        new AddAssetHtmlPlugin({
+            filepath        : require.resolve('../test/vendor.js'),
+            includeSourcemap: false,
         }),
     ],
 };

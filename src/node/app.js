@@ -10,8 +10,8 @@ const app = new Koa();
 const serve = require('koa-static');
 
 // set public directory
-app.use(serve(path.resolve(config.devDirPath)));
-// app.use(serve(path.resolve(config.prodDirPath)));
+// app.use(serve(path.resolve(config.devDirPath)));
+app.use(serve(path.resolve(config.prodDirPath)));
 
 app.listen(PORT);
 console.log(`listening on http://${HOST}:${PORT}.`);

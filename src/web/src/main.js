@@ -1,4 +1,7 @@
 import './css/main.css';
+
+import 'lodash'
+
 import utils from './js/utils/utils';
 
 const DOM = (() => {
