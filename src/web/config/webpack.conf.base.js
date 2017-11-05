@@ -19,7 +19,8 @@ module.exports = {
     context: path.resolve(config.webDirPath, 'src'),
     // 定义入口
     entry  : {
-        main   : './main.js',
+        main  : './main.js',
+        lodash: 'lodash',
         // subMain: './subMain.js',
     },
     // loaders
@@ -81,11 +82,11 @@ module.exports = {
         // new webpack.NamedModulesPlugin(),
         // new webpack.HashedModuleIdsPlugin(),
         // 提取其他模块
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name     : ['lodash'],
-        //     filename : 'js/vendor/[name].js?[hash:5]',
-        //     minChunks: Infinity,
-        // }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name     : ['lodash'],
+            filename : 'js/vendor/[name].js?[hash:5]',
+            minChunks: Infinity,
+        }),
 
         //  提取webpack 的样板(boilerplate)和 manifest
         new webpack.NoEmitOnErrorsPlugin(),
@@ -98,8 +99,8 @@ module.exports = {
         //     context : __dirname,
         //     manifest: require('../test/vendor-manifest.json'),
         //     name: "./vendor.js",
-            // scope: "xyz",
-            // sourceType: "commonjs2"
+        // scope: "xyz",
+        // sourceType: "commonjs2"
         // }),
         new HtmlWebpackPlugin({
             title   : 'postcss',
